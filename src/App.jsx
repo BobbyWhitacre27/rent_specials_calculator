@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useEffect } from "react";
 import './App.css';
 
 function App() {
@@ -6,6 +7,9 @@ function App() {
   const [leaseTerm, setLeaseTerm] = useState(0)
   const [special, setSpecial] = useState(0)
   const [result, setResult] = useState(0)
+
+  const [isLeaseTermOther, setIsLeaseTermOther] = useState(false)
+  
 
 
   const totalRentCost = rentInput * leaseTerm
@@ -23,14 +27,25 @@ function App() {
   const handleLeaseTerm = event => {
     setLeaseTerm(event.target.value)
   }
+  const handleLeaseTermOther = event => {
+    setLeaseTerm(event.target.value)
+  }
 
   const handleSpecial = event => {
+    setSpecial(event.target.value)
+  }
+
+  const handleSpecialOther = event => {
     setSpecial(event.target.value)
   }
 
   const handleResult = event => {
     setResult(answerCurrency)
   }
+
+  useEffect(() => {
+
+  }, [])
 
   return (
     <div className="App">
@@ -61,6 +76,8 @@ function App() {
               <input type="radio" value="15" name="options" data-title="15" class="btn" />
               <input type="radio" value="other" name="options" data-title="Other" class="btn" />
             </div>
+            {leaseTerm === "other" ? <div><input type="text" onChange={handleLeaseTermOther} placeholder="Lease Term" class="input input-bordered w-full max-w-xs mt-8" /></div> : ""}
+
             </form>
 
             <p class="mt-4 sm:text-xl sm:leading-relaxed font-bold">
@@ -71,8 +88,10 @@ function App() {
             <div class="btn-group" onChange={handleSpecial}>
               <input type="radio" value={rentInput} name="options" data-title="1 Month Free" class="btn" />
               <input type="radio" value={rentInput * 2} name="options" data-title="2 Months Free" class="btn" />
-              <input type="radio" name="options" data-title="Other" class="btn" />
+              <input type="radio" value="other" name="options" data-title="Other" class="btn" />
             </div>
+            {special === "other" ? <div><input type="text" onChange={handleSpecialOther} placeholder="Enter special recieved in dollars" class="input input-bordered w-full max-w-xs mt-8" /></div> : ""}
+
             </form>
 
             <div class="mt-8">
