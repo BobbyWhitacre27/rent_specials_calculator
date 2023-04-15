@@ -8,7 +8,8 @@ function App() {
   const [specialSelection, setSpecialSelection] = useState(0)
   const [specialAmount, setSpecialAmount] = useState(0)
   const [otherSpecial, setOtherSpecial] = useState(0)
-  const [result, setResult] = useState(0)
+  const [result, setResult] = useState("$0.00")
+  const [difference, setDifference] = useState("$0.00")
 
   const [isLeaseTermOther, setIsLeaseTermOther] = useState(false)
   const [isSpecialOther, setIsSpecialOther] = useState(false)
@@ -18,6 +19,13 @@ function App() {
   const answer = (totalRentCost - specialAmount) / leaseTerm
 
   const answerCurrency = answer.toLocaleString('en-US', {
+    style: 'currency',
+    currency: 'USD',
+  })
+
+  const delta = rentInput - answer
+
+  const deltaCurrency = delta.toLocaleString('en-US', {
     style: 'currency',
     currency: 'USD',
   })
@@ -52,6 +60,7 @@ function App() {
   const handleResult = event => {
     setSpecialSelection(specialSelection)
     setResult(answerCurrency)
+    setDifference(deltaCurrency)
   }
 
   useEffect(() => {
@@ -85,7 +94,8 @@ function App() {
               Rent Specials Calculator
             </h1>
 
-            <h1 class="text-2xl mt-6 opacity-110">Avg. {result}/month</h1>
+            <h1 class="text-2xl mt-6 font-bold">Avg. {result}/month</h1>
+            <h1 class="text-2xl text-green-600 font-bold">{difference}</h1>
 
             <input type="text" onChange={handleRentInput} placeholder="Monthly Rent" class="input input-bordered w-full max-w-xs mt-8" />
 
