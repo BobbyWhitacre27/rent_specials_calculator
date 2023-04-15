@@ -12,8 +12,5 @@ module.exports = {
     strategy: 'class',
   }), require('daisyui')],
 
-  daisyui: {
-    themes: false,
-  },
 }
 
