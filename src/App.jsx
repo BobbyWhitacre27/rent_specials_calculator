@@ -104,6 +104,7 @@ function App() {
             </p>
             <form>
               <div class="btn-group w-fit" onChange={handleLeaseTerm}>
+			  <input type="radio" value="12" name="options" data-title="12" class="btn w-fit" />
                 <input type="radio" value="13" name="options" data-title="13" class="btn w-fit" />
                 <input type="radio" value="14" name="options" data-title="14" class="btn w-fit" />
                 <input type="radio" value="15" name="options" data-title="15" class="btn w-fit" />
